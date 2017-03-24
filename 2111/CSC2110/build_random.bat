@@ -17,6 +17,7 @@ set DRIVE_LETTER=%1:
 set PATH=%DRIVE_LETTER%\TDM-GCC-64\bin
 
 g++ %CXXFLAGS% -c Random.cpp
+g++ %CXXFLAGS% -c mother.cpp
 
 IF EXIST "librandom.a" (
 	move "librandom.a" "librandom.a.old"

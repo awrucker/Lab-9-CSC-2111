@@ -1,6 +1,7 @@
 #if !defined (SORT_H)
 #define SORT_H
-
+#include <iostream>
+using namespace std;
 template < class T >
 class Sort
 {
@@ -38,9 +39,9 @@ T** Sort<T>::quickSort(T** items, int num_items, int (*compare) (T* one, T* two)
 	T** sortedItems = new T*[num_items];
 	for(int i = 0; i < num_items; i++)
 	{
-		sorted_Items[i] = items[i];
+		sortedItems[i] = items[i];
 	}
-	_quickSort(sorted_Items, 0, num_items, compare);
+	_quickSort(sortedItems, 0, num_items-1, compare);
 	return sortedItems;
 }
 
@@ -54,8 +55,8 @@ void Sort<T>::_quickSort(T** items, int first, int last, int (*compare) (T* one,
    if (first < last)
    {
 	   pivotIndex = partition(items, first, last, compare);
-	   _quickSort(first, pivotIndex, compare);
-	   _quickSort(pivotIndex, last, compare);
+	   _quickSort(items, first, pivotIndex-1, compare);
+	   _quickSort(items, pivotIndex+1, last, compare);
    }  
 }  
 
@@ -71,9 +72,9 @@ int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T
    //initially, choosePivot does nothing           
    choosePivot(items, first, last); 
    int s1 = first-1;
-   for(int i = first, i < last; i++)
+   for(int i = first; i <= last; i++)
    {
-	   if(compare(items[first], items[i]) <= 0)
+	   if(compare(items[first], items[i]) >= 0)
 	   {
 		   s1++;
 		   temp = items[i];
@@ -93,13 +94,13 @@ void Sort<T>::choosePivot(T** items, int first, int last)
    //DO THIS
    //find a better item to be the partition than simply using the item in the first index
    //you will need to swap
- int midpoint=(last-first)/2;
+   int midpoint=(last-first)/2;
 
-   T* midpointForSwitch= items[midpoint];
-   T* first = items[0];
+   T* midpointForSwitch= items[midpoint+first];
+   T* firstItem = items[first];
    
 
-   items[midpoint]=first;
+   items[midpoint+first]=firstItem;
    items[first]= midpointForSwitch;
 
 

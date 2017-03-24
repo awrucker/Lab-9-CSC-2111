@@ -38,7 +38,7 @@ void SortGUI::sortPlot()
    //start, end, increment, sort method, color for points, radius
    //1 = mergesort (red), 2 = quicksort (blue)
    sort(1, n_max, increment, 1, new Color(1, 0, 0), 5); //merge
-   //sort(1, (int) (n_max*1.0/2.0), increment, 2, new Color(0, 0, 1), 5); //quick
+   sort(1, (int) (n_max*1.0/2.0), increment, 2, new Color(0, 0, 1), 5); //quick
    sort(1, (int) (n_max*1.0/2.0), increment, 3, new Color(0, 1, 0), 5); //selection
    sort(1, n_max, increment, 4, new Color(1, 0, 1), 5); //insertion binary
    // sort(1, n_max, increment, 5, new Color(1, 1, 0), 5); //heap
