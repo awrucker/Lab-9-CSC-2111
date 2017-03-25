@@ -39,9 +39,9 @@ T** Sort<T>::quickSort(T** items, int num_items, int (*compare) (T* one, T* two)
 	T** sortedItems = new T*[num_items];
 	for(int i = 0; i < num_items; i++)
 	{
-		sortedItems[i] = items[i];
+		sortedItems[i] = items[i];                                   //copies a list to be sorted
 	}
-	_quickSort(sortedItems, 0, num_items-1, compare);
+	_quickSort(sortedItems, 0, num_items-1, compare);          /// calls the recursive function
 	return sortedItems;
 }
 
@@ -54,9 +54,9 @@ void Sort<T>::_quickSort(T** items, int first, int last, int (*compare) (T* one,
    //make the necessary partition and recursive calls for quick sort
    if (first < last)
    {
-	   pivotIndex = partition(items, first, last, compare);
-	   _quickSort(items, first, pivotIndex-1, compare);
-	   _quickSort(items, pivotIndex+1, last, compare);
+	   pivotIndex = partition(items, first, last, compare);        // makes 2 partitions 
+	   _quickSort(items, first, pivotIndex-1, compare);           //recursive call for the the 2 partitions 
+	   _quickSort(items, pivotIndex+1, last, compare);            // recursive call for the the 2 partition 
    }  
 }  
 
@@ -71,13 +71,13 @@ int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T
 
    //initially, choosePivot does nothing           
    choosePivot(items, first, last); 
-   int s1 = first-1;
+   int s1 = first-1;                          //makes s1 1 less than the first element of the array
    for(int i = first; i <= last; i++)
    {
 	   if(compare(items[first], items[i]) >= 0)
 	   {
-		   s1++;
-		   temp = items[i];
+		   s1++;                              //increments s1
+		   temp = items[i];                   
 		   items[i] = items[s1];
 		   items[s1] = temp;
 	   }
@@ -94,14 +94,14 @@ void Sort<T>::choosePivot(T** items, int first, int last)
    //DO THIS
    //find a better item to be the partition than simply using the item in the first index
    //you will need to swap
-   int midpoint=(last-first)/2;
+   int midpoint=(last-first)/2;                      //finds the midpoint 
 
-   T* midpointForSwitch= items[midpoint+first];
-   T* firstItem = items[first];
+   T* midpointForSwitch= items[midpoint+first];      // saves the midpoint to a temporary memory address
+   T* firstItem = items[first];                     // save sthe first elemet in the array
    
 
-   items[midpoint+first]=firstItem;
-   items[first]= midpointForSwitch;
+   items[midpoint+first]=firstItem;                  //    swaps middle and first
+   items[first]= midpointForSwitch;                  //    swaps middle and first 
 
 
 
