@@ -1,3 +1,8 @@
+/*
+	Dylan Bush & Adam Rucker
+	3/26/2017
+	Lab 9/ Quick Sort
+*/	
 #if !defined (SORT_H)
 #define SORT_H
 #include <iostream>
@@ -72,13 +77,13 @@ int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T
    //initially, choosePivot does nothing           
    choosePivot(items, first, last); 
    int s1 = first-1;                          //makes s1 1 less than the first element of the array
-   for(int i = first; i <= last; i++)
+   for(int i = first; i <= last; i++)	//runs through the array from the first through the last
    {
-	   if(compare(items[first], items[i]) >= 0)
+	   if(compare(items[first], items[i]) >= 0)//tests to see if the first item is greater than or equal to items[i]
 	   {
 		   s1++;                              //increments s1
-		   temp = items[i];                   
-		   items[i] = items[s1];
+		   temp = items[i];                   //sets temp = items[i] for swap
+		   items[i] = items[s1];			  //does the swap
 		   items[s1] = temp;
 	   }
    }
