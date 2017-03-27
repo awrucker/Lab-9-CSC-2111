@@ -1,6 +1,6 @@
 /*
 	Dylan Bush & Adam Rucker
-	3/26/2017
+	3/27/2017
 	Lab 9/ Quick Sort
 */	
 #if !defined (SORT_H)
@@ -34,7 +34,10 @@ class Sort
       static int linearSearch(T** items, int numItems, T* item, int (*compare) (T* one, T* two));
       static int binarySearch(T** items, int numItems, T* item, int (*compare) (T* one, T* two));
 };
-
+/*
+	Pre: Receives an array of items, the number of items, and a function pointer for comparing items
+	Post: Returns a sorted list of items
+*/	
 template < class T >
 T** Sort<T>::quickSort(T** items, int num_items, int (*compare) (T* one, T* two))
 {
@@ -49,7 +52,10 @@ T** Sort<T>::quickSort(T** items, int num_items, int (*compare) (T* one, T* two)
 	_quickSort(sortedItems, 0, num_items-1, compare);          /// calls the recursive function
 	return sortedItems;
 }
-
+/*
+	Pre: Receives a T** items, indexx of the first, index of the last and a comparison function pointer
+	Post:Sorts the T** array
+*/	
 template < class T >
 void Sort<T>::_quickSort(T** items, int first, int last, int (*compare) (T* one, T* two))
 {
@@ -64,7 +70,10 @@ void Sort<T>::_quickSort(T** items, int first, int last, int (*compare) (T* one,
 	   _quickSort(items, pivotIndex+1, last, compare);            // recursive call for the the 2 partition 
    }  
 }  
-
+/*
+	Pre: Receives a T** items, first, last, and a comparison function pointer
+	Post: Returns the index of the partition and the index where the item is in the correct position is.
+*/	
 template < class T >
 int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T* two))
 {
@@ -92,7 +101,10 @@ int Sort<T>::partition(T** items, int first, int last, int (*compare) (T* one, T
    items[first] = temp;
    return s1;
 }
-
+/*
+	Pre:Receives an array of items, index of the first and index of the last
+	Post: Swaps the first and the item in the middle of first and last to prevent the worse case
+*/	
 template < class T >
 void Sort<T>::choosePivot(T** items, int first, int last)
 {
